@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: prom-aggregator-cronjob
+  namespace: prometheus
 spec:
   schedule: "0 * * * *"
   jobTemplate:
@@ -10,15 +11,15 @@ spec:
         spec:
           containers:
           - name: aggregator
-            image: burns.azurecr.io/aggregator:v1
+            image: burns.azurecr.io/aggregator:v2
             env:
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mssql
                   key: password
-              command:
-              - node
-              - /aggregator.js
-              workingDir: /
+            command:
+            - node
+            - /aggregator.js
+            workingDir: /
           restartPolicy: OnFailure

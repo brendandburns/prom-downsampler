@@ -3,5 +3,20 @@
         "name": "temperature_celsius",
         "promQuery": "avg_over_time(temperature_celsius[1h] offset 1h)",
         "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    },
+    {
+        "name": "humidity_outside",
+        "promQuery": "avg_over_time(humidity{job=\"shed\"}[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    },
+    {
+        "name": "humidity_upstairs",
+        "promQuery": "avg_over_time(humidity{job=\"esp\"}[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    },
+    {
+        "name": "solar_volts",
+        "promQuery": "avg_over_time(mcp3008_volts{channel=\"1\"}[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
     }
 ]
