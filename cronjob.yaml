@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: prom-aggregator-cronjob
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: aggregator
+            image: burns.azurecr.io/aggregator:v1
+            env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: password
+              command:
+              - node
+              - /aggregator.js
+              workingDir: /
+          restartPolicy: OnFailure
