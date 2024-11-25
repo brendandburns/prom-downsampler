@@ -1,0 +1,7 @@
+[
+    {
+        "name": "temperature_celsius",
+        "promQuery": "avg_over_time(temperature_celsius[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    }
+]

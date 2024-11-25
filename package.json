@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "mssql": "^11.0.1",
+    "npm": "^10.9.1",
+    "prometheus-query": "^3.4.1"
+  },
+  "scripts": {
+    "main": "tsx aggregator.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/mssql": "^9.1.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/tedious": "^4.0.14"
+  }
+}
