@@ -15,6 +15,16 @@
         "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
     },
     {
+        "name": "pressure",
+        "promQuery": "avg_over_time(pressure_mmhg[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    },
+    {
+        "name": "air_quality",
+        "promQuery": "avg_over_time(pms_particulate_matter_standard{microns=\"2.5\"}[1h] offset 1h)",
+        "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"
+    },
+    {
         "name": "solar_volts",
         "promQuery": "avg_over_time(mcp3008_volts{channel=\"1\"}[1h] offset 1h)",
         "sqlQuery": "INSERT INTO Series (name, timestamp, value) VALUES(@name, @timestamp, @value)"

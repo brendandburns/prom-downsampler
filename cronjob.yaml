@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: aggregator
-            image: burns.azurecr.io/aggregator:v2
+            image: burns.azurecr.io/aggregator:v3
             env:
             - name: PASSWORD
               valueFrom:
@@ -22,4 +22,13 @@ spec:
             - node
             - /aggregator.js
             workingDir: /
+            volumeMounts:
+              - name: config-volume
+                mountPath: /config.json
+                subPath: config.json
+          volumes:
+          - name: config-volume
+            configMap:
+              name: aggregator-config
+
           restartPolicy: OnFailure
